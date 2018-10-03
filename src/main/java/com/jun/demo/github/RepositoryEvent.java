@@ -1,37 +1,44 @@
+/**
+ * Copyright (C), 2015-2018,
+ * FileName: RepositoryEvent
+ * Author:   Administrator
+ * Date:     2018-10-03 15:12
+ * Description: no
+ * History:
+ * <author>          <time>          <version>          <desc>
+ * Wangjun           修改时间           版本号              描述
+ */
+
 package com.jun.demo.github;
-
-import java.time.OffsetDateTime;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.OffsetDateTime;
+
+
 public class RepositoryEvent {
-
     private final Type type;
-
     private final OffsetDateTime creationTime;
-
     private final Actor actor;
-
     private final Issue issue;
-
     @JsonCreator
     public RepositoryEvent(@JsonProperty("event") String type,
-                           @JsonProperty("created_at") OffsetDateTime creationTime,
+                           @JsonProperty("created_at") OffsetDateTime creationTime ,
                            @JsonProperty("actor") Actor actor,
-                           @JsonProperty("issue") Issue issue) {
+                           @JsonProperty("issue") Issue issue){
         this.type = Type.valueFrom(type);
-        this.creationTime = creationTime;
-        this.actor = actor;
+        this .creationTime = creationTime;
+        this.actor =actor;
         this.issue = issue;
-    }
 
-    public Type getType() {
-        return type;
     }
 
     public OffsetDateTime getCreationTime() {
         return creationTime;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public Actor getActor() {
@@ -83,5 +90,4 @@ public class RepositoryEvent {
                     "'" + type + "' is not a valid event type");
         }
     }
-
 }
